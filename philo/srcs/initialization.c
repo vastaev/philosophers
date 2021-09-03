@@ -8,7 +8,7 @@ int	parsing_args(t_data *data, int argc, char *argv[])
 	data->toSleep = ft_atoi_long(argv[4]);
 	if (argc == 6)
 	{
-		data->isLimitedMeals = argc == 6;
+		data->isLimitedMeals = 1;
 		data->mealsCounter = ft_atoi_long(argv[5]);
 	}
 	if (data->number < 1 || data->number > 200)
@@ -24,13 +24,13 @@ int	parsing_args(t_data *data, int argc, char *argv[])
 	return (0);
 }
 
-int	initialize_data(t_data *data)
+int	init_data(t_data *data)
 {
 	u_int32_t	i;
 
-	data->philos = malloc(sizeof(*data->philos) * data->number);
-	if (!data->philos)
-		return (ft_error("Error: malloc philos\n"));
+	// data->philos = malloc(sizeof(*data->philos) * data->number);
+	// if (!data->philos)
+	// 	return (ft_error("Error: malloc philos\n"));
 	data->mtxs = malloc(sizeof(*data->mtxs) * data->number);
 	if (!data->mtxs)
 		return (ERROR);
@@ -41,21 +41,30 @@ int	initialize_data(t_data *data)
 	return (0);
 }
 
-void	initialize_philos(t_data *data)
+void	init_philos(t_philo **philo, pthread_t **philo_thread, t_data *data)
 {
 	u_int32_t	i;
 
 	i = 0;
-	while (i < data->number)
-	{
-		data->philos[i].data = data;
-		data->philos[i].pos = i + 1;
-		data->philos[i].mealsCount = 0;
-		if (i == 0)
-			data->philos[i].lFork = &data->mtxs[data->number - 1];
-		else
-			data->philos[i].lFork = &data->mtxs[i - 1];
-		data->philos[i].rFork = &data->mtxs[i];
-		i++;
-	}
+	// while (i < data->number)
+	// {
+	// 	data->philos[i].data = data;
+	// 	data->philos[i].pos = i + 1;
+	// 	data->philos[i].mealsCount = 0;
+	// 	if (i == 0)
+	// 		data->philos[i].lFork = &data->mtxs[data->number - 1];
+	// 	else
+	// 		data->philos[i].lFork = &data->mtxs[i - 1];
+	// 	data->philos[i].rFork = &data->mtxs[i];
+	// 	i++;
+	// }
+	*philo = malloc(sizeof(t_philo) * data->number);
+	if (!philo)
+		return (ft_error("Error: malloc philos\n"));
+	*philo_thread = malloc(sizeof(pthread_t) * data->number);
+	if (!philo)
+		return (ft_error("Error: malloc philo threads\n"));
+	if (pthread_mutex_init(&data->messager, NULL) != 0)
+		return (ft_error("Error: messager init\n"));
+	
 }

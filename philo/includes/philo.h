@@ -15,6 +15,8 @@ typedef struct s_philo
 	int	state;
 	uint32_t		pos;
 	pthread_t		thread;
+	uint64_t		birth;
+	uint64_t		lastMeal;
 	pthread_mutex_t	*lFork;
 	pthread_mutex_t	*rFork;
 	uint32_t		mealsCount;
@@ -33,6 +35,7 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*mtxs;
 	pthread_t		waiter_thread;
+	pthread_t		messager;
 
 }					t_data;
 
@@ -52,6 +55,7 @@ uint64_t	ft_atoi_long(const char *str);
 
 //utils
 int			ft_error(char *str);
+uint64_t	get_time(uint64_t start);
 
 
 
