@@ -3,16 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+         #
+#    By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 12:30:03 by cjoanne           #+#    #+#              #
-#    Updated: 2021/08/19 02:06:08 by nephilister      ###   ########.fr        #
+#    Updated: 2021/09/02 21:50:30 by cjoanne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	philo
 
-SRCS_LIST	=	main.c
+SRCS_LIST	=	main.c\
+				initialization.c\
+				lib_funcs.c\
+				utils.c\
+				validation.c
 SRCS_DIR	=	srcs/
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -23,7 +27,7 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 CC 			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 
-INCLUDES	=	-I$(LIBFT_HEADER) -I$(HEADERS_DIR) -I$(MINILIBX_HEADERS)
+INCLUDES	=	-I $(HEADERS_DIR)
 
 HEADERS_DIR		=	./includes/
 HEADERS_LIST	=	philo.h
@@ -36,12 +40,11 @@ GREEN = \033[0;32m
 BLUE= \033[0;34m
 RED = \033[0;31m
 RESET = \033[0m
-LIBA = libft.a
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS)
-	@$(CC) $(OBJS) $(LIBRARIES) $(INCLUDES) -o $(NAME)
+$(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS) $(HEADERS)
+	@$(CC) $(INCLUDES) $(OBJS) -o $(NAME)
 	@echo "$(NAME): $(BLUE)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
@@ -54,7 +57,6 @@ $(OBJS_DIR) :
 
 clean :
 	@$(RM) $(OBJS_DIR)
-	@$(MAKE) clean -C $(LIBFT_DIR)
 	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean : clean
