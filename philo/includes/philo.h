@@ -17,8 +17,8 @@ typedef struct s_philo
 	pthread_t		thread;
 	uint64_t		birth;
 	uint64_t		lastMeal;
-	pthread_mutex_t	*lFork;
-	pthread_mutex_t	*rFork;
+	uint32_t		leftForkInd;
+	uint32_t		rightForkInd;
 	uint32_t		mealsCount;
 	void			*data;
 }					t_philo;
@@ -26,16 +26,17 @@ typedef struct s_philo
 typedef struct s_data
 {
 	uint32_t		number;
+	uint64_t		time;
 	uint64_t		toDie;
 	uint64_t		toEat;
 	uint64_t		toSleep;
 	bool			isLimitedMeals;
 	uint32_t		mealsCounter;
-
+	uint32_t		startNum;
 	t_philo			*philos;
 	pthread_mutex_t	*mtxs;
 	pthread_t		waiter_thread;
-	pthread_t		messager;
+	pthread_t		messenger;
 
 }					t_data;
 
@@ -45,8 +46,8 @@ int			validation_of_args(int argc, char *argv[]);
 int			parsing_args(t_data *data, int argc, char *argv[]);
 
 //init
-int			initialize_data(t_data *data);
-void		initialize_philos(t_data *data);
+int			init_data(t_data *data);
+void		init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data);
 
 //libft funcs
 int			ft_isdigit(char c);

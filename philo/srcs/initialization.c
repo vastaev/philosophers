@@ -31,6 +31,7 @@ int	init_data(t_data *data)
 	// data->philos = malloc(sizeof(*data->philos) * data->number);
 	// if (!data->philos)
 	// 	return (ft_error("Error: malloc philos\n"));
+	data->startNum == 0;
 	data->mtxs = malloc(sizeof(*data->mtxs) * data->number);
 	if (!data->mtxs)
 		return (ERROR);
@@ -41,7 +42,7 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-void	init_philos(t_philo **philo, pthread_t **philo_thread, t_data *data)
+void	init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data)
 {
 	u_int32_t	i;
 
@@ -58,13 +59,20 @@ void	init_philos(t_philo **philo, pthread_t **philo_thread, t_data *data)
 	// 	data->philos[i].rFork = &data->mtxs[i];
 	// 	i++;
 	// }
+	data->time = get_time(0);
 	*philo = malloc(sizeof(t_philo) * data->number);
 	if (!philo)
 		return (ft_error("Error: malloc philos\n"));
 	*philo_thread = malloc(sizeof(pthread_t) * data->number);
 	if (!philo)
 		return (ft_error("Error: malloc philo threads\n"));
-	if (pthread_mutex_init(&data->messager, NULL) != 0)
-		return (ft_error("Error: messager init\n"));
-	
+	if (pthread_mutex_init(&data->messenger, NULL) != 0)
+		return (ft_error("Error: messenger init\n"));
+	while (i < data->number)
+	{
+		if (pthread_mutex_init(&data->mtxs[i], NULL))
+			return (ft_error("Error: forks init\n"));
+		i++;
+	}
+	return (0);
 }
