@@ -28,10 +28,10 @@ int	init_data(t_data *data)
 {
 	u_int32_t	i;
 
-	// data->philos = malloc(sizeof(*data->philos) * data->number);
-	// if (!data->philos)
-	// 	return (ft_error("Error: malloc philos\n"));
-	data->startNum == 0;
+	data->time = get_time(0);
+	data->ateNum = 0;
+	data->isAllAlive = true;
+	data->startNum = 0;
 	data->mtxs = malloc(sizeof(*data->mtxs) * data->number);
 	if (!data->mtxs)
 		return (ERROR);
@@ -42,24 +42,10 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-void	init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data)
+int	init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data)
 {
 	u_int32_t	i;
 
-	i = 0;
-	// while (i < data->number)
-	// {
-	// 	data->philos[i].data = data;
-	// 	data->philos[i].pos = i + 1;
-	// 	data->philos[i].mealsCount = 0;
-	// 	if (i == 0)
-	// 		data->philos[i].lFork = &data->mtxs[data->number - 1];
-	// 	else
-	// 		data->philos[i].lFork = &data->mtxs[i - 1];
-	// 	data->philos[i].rFork = &data->mtxs[i];
-	// 	i++;
-	// }
-	data->time = get_time(0);
 	*philo = malloc(sizeof(t_philo) * data->number);
 	if (!philo)
 		return (ft_error("Error: malloc philos\n"));
@@ -68,6 +54,7 @@ void	init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data)
 		return (ft_error("Error: malloc philo threads\n"));
 	if (pthread_mutex_init(&data->messenger, NULL) != 0)
 		return (ft_error("Error: messenger init\n"));
+	i = 0;
 	while (i < data->number)
 	{
 		if (pthread_mutex_init(&data->mtxs[i], NULL))

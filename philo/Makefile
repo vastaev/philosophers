@@ -6,7 +6,7 @@
 #    By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 12:30:03 by cjoanne           #+#    #+#              #
-#    Updated: 2021/09/02 21:50:30 by cjoanne          ###   ########.fr        #
+#    Updated: 2021/09/05 00:40:49 by cjoanne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS_LIST	=	main.c\
 				initialization.c\
 				lib_funcs.c\
 				utils.c\
-				validation.c
+				validation.c\
+				philo_life.c
 SRCS_DIR	=	srcs/
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -43,7 +44,7 @@ RESET = \033[0m
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS) $(HEADERS)
+$(NAME) : $(OBJS_DIR) $(OBJS) $(HEADERS)
 	@$(CC) $(INCLUDES) $(OBJS) -o $(NAME)
 	@echo "$(NAME): $(BLUE)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
