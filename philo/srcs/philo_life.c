@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_life.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
+/*   Updated: 2021/09/05 05:00:07 by cjoanne          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static void	take_forks(t_philo *philo);
@@ -6,7 +18,7 @@ static void	clear_messaging(t_philo *philo, char *msg);
 
 void	*philo_life(void *philosopher)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
 	while (21)

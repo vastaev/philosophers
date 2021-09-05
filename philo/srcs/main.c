@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
+/*   Updated: 2021/09/05 05:43:12 by cjoanne          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-static int	create_threads(t_philo *philo, pthread_t *philo_thread, t_data *data);
+static int	creat_thrds(t_philo *philo, pthread_t *philo_thread, t_data *data);
 static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data);
-static void *waiter_actions(void *philosopher);
+static void	*waiter_actions(void *philosopher);
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_data		data;
 	t_philo		*philo;
@@ -17,13 +29,20 @@ int main(int argc, char *argv[])
 	if (init_data(&data) == ERROR)
 		return (ERROR);
 	if (init_philo(&philo, &philo_thread, &data) == ERROR)
+	{
+		philo_free(philo, philo_thread, &data);
 		return (ERROR);
-	if (create_threads(philo, philo_thread, &data) == ERROR)
+	}
+	if (creat_thrds(philo, philo_thread, &data) == ERROR)
+	{
+		philo_free(philo, philo_thread, &data);
 		return (ERROR);
+	}
+	philo_free(philo, philo_thread, &data);
 	return (0);
 }
 
-static int	create_threads(t_philo *philo, pthread_t *philo_thread, t_data *data)
+static int	creat_thrds(t_philo *philo, pthread_t *philo_thread, t_data *data)
 {
 	size_t	i;
 
@@ -68,7 +87,7 @@ static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data)
 	return (0);
 }
 
-static void *waiter_actions(void *philosopher)
+static void	*waiter_actions(void *philosopher)
 {
 	t_philo		*philo;
 	uint32_t	i;

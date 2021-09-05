@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/05 04:56:48 by cjoanne           #+#    #+#             */
+/*   Updated: 2021/09/05 05:00:58 by cjoanne          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	check_for_number(char *str)
@@ -24,7 +36,7 @@ int	validation_of_args(int argc, char *argv[])
 	int	i;
 
 	if (argc < 5 || argc > 6)
-		return(ft_error("Error: wrong amonut of arguments\n"));
+		return (ft_error("Error: wrong amonut of arguments\n"));
 	i = 1;
 	while (i < argc)
 	{

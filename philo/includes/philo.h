@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
+/*   Updated: 2021/09/05 05:42:12 by cjoanne          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -32,7 +44,7 @@ typedef struct s_data
 	pthread_mutex_t	messenger;
 }					t_data;
 
- typedef struct s_philo
+typedef struct s_philo
 {
 	uint32_t		pos;
 	pthread_t		thread;
@@ -49,6 +61,7 @@ int			parsing_args(t_data *data, int argc, char *argv[]);
 //init
 int			init_data(t_data *data);
 int			init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data);
+void		philo_free(t_philo *philo, pthread_t *philo_thread, t_data *data);
 
 //philo life
 void		*philo_life(void *philosopher);
