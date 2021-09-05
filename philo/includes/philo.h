@@ -36,7 +36,6 @@ typedef struct s_data
 {
 	uint32_t		pos;
 	pthread_t		thread;
-	uint64_t		birth;
 	uint64_t		lastMealTime;
 	uint32_t		leftForkInd;
 	uint32_t		rightForkInd;
@@ -54,7 +53,6 @@ int			init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data);
 //philo life
 void		*philo_life(void *philosopher);
 
-
 //libft funcs
 int			ft_isdigit(char c);
 int			ft_isspace(char c);
@@ -63,6 +61,6 @@ uint32_t	ft_atoi_long(const char *str);
 //utils
 int			ft_error(char *str);
 uint64_t	get_time(uint64_t start);
-void		ft_usleep(u_int32_t n);
+void		ft_usleep(uint64_t n);
 
 #endif

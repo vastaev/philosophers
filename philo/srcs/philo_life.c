@@ -21,10 +21,10 @@ void	*philo_life(void *philosopher)
 
 static void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->mtxs[philo->leftForkInd]);
-	clear_messaging(philo, LFORK);
-	pthread_mutex_lock(&philo->data->mtxs[philo->rightForkInd]);
+	pthread_mutex_lock(&(philo->data->mtxs[philo->rightForkInd]));
 	clear_messaging(philo, RFORK);
+	pthread_mutex_lock(&(philo->data->mtxs[philo->leftForkInd]));
+	clear_messaging(philo, LFORK);
 }
 
 static void	eating(t_philo *philo)
@@ -38,8 +38,8 @@ static void	eating(t_philo *philo)
 		if (philo->mealsLeft == 0)
 			philo->data->ateNum++;
 	}
-	pthread_mutex_unlock(&philo->data->mtxs[philo->leftForkInd]);
 	pthread_mutex_unlock(&philo->data->mtxs[philo->rightForkInd]);
+	pthread_mutex_unlock(&philo->data->mtxs[philo->leftForkInd]);
 }
 
 static void	clear_messaging(t_philo *philo, char *msg)

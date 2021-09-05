@@ -14,9 +14,12 @@ int main(int argc, char *argv[])
 		return (ERROR);
 	if (parsing_args(&data, argc, argv) == ERROR)
 		return (ERROR);
-	init_data(&data);
-	init_philo(&philo, &philo_thread, &data);
-	create_threads(philo, philo_thread, &data);
+	if (init_data(&data) == ERROR)
+		return (ERROR);
+	if (init_philo(&philo, &philo_thread, &data) == ERROR)
+		return (ERROR);
+	if (create_threads(philo, philo_thread, &data) == ERROR)
+		return (ERROR);
 	return (0);
 }
 
@@ -55,9 +58,9 @@ static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data)
 	i = data->startNum;
 	while (i < data->number)
 	{
-		philo->lastMealTime = get_time(0);
-		if (pthread_create(&philo_thread[i], NULL, &philo_life, &(philo[i])))
-			return (ft_error("Error: creating philo thread"));
+		philo[i].lastMealTime = get_time(0);
+		if (pthread_create(&philo_thread[i], NULL, &philo_life, &philo[i]))
+			return (ft_error("Error: creating philo thread fail"));
 		pthread_detach(philo_thread[i]);
 		i = i + 2;
 	}
@@ -71,6 +74,7 @@ static void *waiter_actions(void *philosopher)
 	uint32_t	i;
 
 	i = 0;
+	philo = (t_philo *)philosopher;
 	while (21)
 	{
 		if (get_time(philo[i].lastMealTime) > philo[i].data->toDie)
