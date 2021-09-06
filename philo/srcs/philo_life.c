@@ -6,7 +6,7 @@
 /*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/05 05:00:07 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:12:48 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*philo_life(void *philosopher)
 		take_forks(philo);
 		eating(philo);
 		clear_messaging(philo, SLEEPING);
-		ft_usleep(philo->data->toSleep * 1000);
+		ft_usleep(philo->data->toSleep);
 		clear_messaging(philo, THINKING);
 	}
 }
@@ -43,7 +43,7 @@ static void	eating(t_philo *philo)
 {
 	philo->lastMealTime = get_time(0);
 	clear_messaging(philo, EATING);
-	ft_usleep(philo->data->toEat * 1000);
+	ft_usleep(philo->data->toEat);
 	if (philo->data->isLimitedMeals == true)
 	{
 		philo->mealsLeft--;

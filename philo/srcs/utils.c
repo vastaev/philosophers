@@ -6,7 +6,7 @@
 /*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:46 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/05 05:44:11 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:14:08 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ uint64_t	get_time(uint64_t start)
 
 void	ft_usleep(uint64_t n)
 {
-	struct timeval	i;
-	struct timeval	j;
+	uint64_t	cur_time;
 
-	gettimeofday(&i, NULL);
-	while (21)
+	cur_time = get_time(0);
+	usleep((n - 15) * 1000);
+	while (1)
 	{
-		gettimeofday(&j, NULL);
-		if (((j.tv_usec - i.tv_usec + (j.tv_sec - i.tv_sec) * 1000000)) > n)
+		usleep(50);
+		if (get_time(0) >= cur_time + n)
 			break ;
-		usleep(10);
 	}
 }
 
