@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:46 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/06 21:14:08 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:25:59 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ uint64_t	get_time(uint64_t start)
 
 void	ft_usleep(uint64_t n)
 {
-	uint64_t	cur_time;
+	struct timeval	i;
+	struct timeval	j;
 
-	cur_time = get_time(0);
-	usleep((n - 15) * 1000);
-	while (1)
+	n *= 1000;
+	gettimeofday(&i, NULL);
+	while (42)
 	{
-		usleep(50);
-		if (get_time(0) >= cur_time + n)
+		gettimeofday(&j, NULL);
+		if (((j.tv_usec - i.tv_usec + (j.tv_sec - i.tv_sec) * 1000000)) > n)
 			break ;
+		usleep(10);
 	}
 }
 

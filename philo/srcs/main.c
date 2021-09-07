@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/05 05:43:12 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:36:31 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data)
 			return (ft_error("Error: creating philo thread fail"));
 		pthread_detach(philo_thread[i]);
 		i = i + 2;
+		usleep(100);
 	}
 	usleep(100);
 	return (0);
