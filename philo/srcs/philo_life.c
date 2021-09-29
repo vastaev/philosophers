@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/29 15:10:06 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/09/29 15:16:00 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	*philo_life(void *philosopher)
 
 static void	take_forks(t_philo *philo)
 {
-	clear_messaging(philo, FORK);
 	pthread_mutex_lock(&(philo->data->mtxs[philo->first_fork]));
 	clear_messaging(philo, FORK);
 	pthread_mutex_lock(&(philo->data->mtxs[philo->second_fork]));
+	clear_messaging(philo, FORK);
 }
 
 static void	eating(t_philo *philo)

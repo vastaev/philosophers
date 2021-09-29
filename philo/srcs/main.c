@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/29 15:11:22 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/09/29 16:11:32 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	creat_thrds(t_philo *philo, pthread_t *philo_thread, t_data *data)
 			philo[i].second_fork = philo[i].rightForkInd;
 		else
 			philo[i].second_fork = philo[i].leftForkInd;
-		philo[i].pos = i ;
+		philo[i].pos = i + 1;
 		philo[i].data = data;
 		if (philo[i].data->isLimitedMeals == true)
 			philo[i].mealsLeft = data->mealsCounter;
@@ -64,9 +64,9 @@ static int	creat_thrds(t_philo *philo, pthread_t *philo_thread, t_data *data)
 	}
 	if (create_philo(philo, philo_thread, data) == ERROR)
 		return (ERROR);
-	// data->startNum++;
-	// if (create_philo(philo, philo_thread, data) == ERROR)
-	// 	return (ERROR);
+	data->startNum++;
+	if (create_philo(philo, philo_thread, data) == ERROR)
+		return (ERROR);
 	if (pthread_create(&data->waiter_thread, NULL, &waiter_actions, philo))
 		return (ERROR);
 	pthread_join(data->waiter_thread, NULL);
@@ -77,18 +77,17 @@ static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data)
 {
 	uint32_t	i;
 
-	// i = data->startNum;
-	i = 0;
+	i = data->startNum;
+	// i = 0;
 	while (i < data->number)
 	{
 		philo[i].lastMealTime = get_time(0);
 		if (pthread_create(&philo_thread[i], NULL, &philo_life, &philo[i]))
 			return (ft_error("Error: creating philo thread fail"));
 		pthread_detach(philo_thread[i]);
-		i = i + 1;
-		usleep(100);
+		i = i + 2;
+		usleep(1000);
 	}
-	// usleep(100);
 	return (0);
 }
 
@@ -117,6 +116,6 @@ static void	*waiter_actions(void *philosopher)
 		i++;
 		if (i == philo->data->number)
 			i = 0;
-		usleep(10);
+		usleep(1000);
 	}
 }
