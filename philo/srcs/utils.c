@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:46 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/07 18:25:59 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/09/29 10:35:19 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,14 @@ void	philo_free(t_philo *philo, pthread_t *philo_thread, t_data *data)
 		free(philo_thread);
 	if (data->mtxs != NULL)
 		free(data->mtxs);
+}
+
+uint32_t	ft_min(uint32_t a, uint32_t b)
+{
+	if (a < b)
+		return (a);
+	else if (b < a)
+		return (b);
+	else
+		return (0);
 }
