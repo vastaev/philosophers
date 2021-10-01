@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:46 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/29 10:35:19 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/01 23:38:56 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_usleep(uint64_t n)
 		gettimeofday(&j, NULL);
 		if (((j.tv_usec - i.tv_usec + (j.tv_sec - i.tv_sec) * 1000000)) > n)
 			break ;
-		usleep(10);
+		usleep(100);
 	}
 }
 
@@ -53,7 +53,7 @@ void	philo_free(t_philo *philo, pthread_t *philo_thread, t_data *data)
 		free(data->mtxs);
 }
 
-uint32_t	ft_min(uint32_t a, uint32_t b)
+uint32_t	ft_m(uint32_t a, uint32_t b)
 {
 	if (a < b)
 		return (a);

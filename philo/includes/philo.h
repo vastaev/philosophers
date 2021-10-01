@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/29 12:18:35 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/01 23:39:03 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ uint32_t	ft_atoi_long(const char *str);
 int			ft_error(char *str);
 uint64_t	get_time(uint64_t start);
 void		ft_usleep(uint64_t n);
-uint32_t	ft_min(uint32_t a, uint32_t b);
+uint32_t	ft_m(uint32_t a, uint32_t b);
 
 #endif
