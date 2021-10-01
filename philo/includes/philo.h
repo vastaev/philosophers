@@ -6,7 +6,7 @@
 /*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/05 05:42:12 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/01 23:39:03 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 # define SLEEPING "is sleeping"
 # define EATING "is eating"
 # define THINKING "is thinking"
-# define LFORK	"has taken a left fork"
-# define RFORK	"has taken a right fork"
+# define FORK	"has taken a fork"
 
 typedef struct s_data
 {
@@ -51,6 +50,8 @@ typedef struct s_philo
 	uint64_t		lastMealTime;
 	uint32_t		leftForkInd;
 	uint32_t		rightForkInd;
+	uint32_t		first_fork;
+	uint32_t		second_fork;
 	uint32_t		mealsLeft;
 	t_data			*data;
 }					t_philo;
@@ -75,5 +76,6 @@ uint32_t	ft_atoi_long(const char *str);
 int			ft_error(char *str);
 uint64_t	get_time(uint64_t start);
 void		ft_usleep(uint64_t n);
+uint32_t	ft_m(uint32_t a, uint32_t b);
 
 #endif
