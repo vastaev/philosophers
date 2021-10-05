@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/01 23:39:03 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/06 00:58:29 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 {
 	uint32_t		pos;
 	pthread_t		thread;
-	uint64_t		lastMealTime;
+	uint64_t		last_meal_time;
 	uint32_t		leftForkInd;
 	uint32_t		rightForkInd;
 	uint32_t		first_fork;

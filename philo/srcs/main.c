@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/02 00:00:26 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/06 01:00:05 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	create_philo(t_philo *philo, pthread_t *philo_thread, t_data *data)
 	i = data->startNum;
 	while (i < data->number)
 	{
-		philo[i].lastMealTime = get_time(0);
+		philo[i].last_meal_time = get_time(0);
 		pthread_create(&philo_thread[i], NULL, &philo_life, &philo[i]);
 		pthread_detach(philo_thread[i]);
 		i += 2;
@@ -105,7 +105,7 @@ static void	*waiter_actions(void *philosopher)
 	philo = (t_philo *)philosopher;
 	while (21)
 	{
-		if (get_time(philo[i].lastMealTime) > philo[i].data->toDie)
+		if (get_time(philo[i].last_meal_time) > philo[i].data->toDie)
 		{
 			philo->data->isAllAlive = false;
 			pthread_mutex_lock(&philo->data->messenger);

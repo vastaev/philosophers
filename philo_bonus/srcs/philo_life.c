@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/05 23:16:13 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/06 01:36:54 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	eating(t_philo *philo)
 	else
 		usleep(philo->data->toDie * 1000);
 	while (get_time(philo->lastMealTime) < philo->data->toEat)
+		usleep(300);
 	if (philo->data->isLimitedMeals == true)
 		philo->mealsLeft--;
 	sem_post(philo->data->forks);
@@ -82,7 +83,7 @@ static void	eating(t_philo *philo)
 
 static void	clear_messaging(t_philo *philo, char *msg)
 {
-	// sem_wait(philo->data->messenger);
-	printf("%llu %u %s\n", get_time(philo->data->time), philo->pos, msg);
-	// sem_post(philo->data->messenger);
+	sem_wait(philo->data->messenger);
+	printf("%llu %u %s\n", get_time(philo->data->time + 1), philo->pos, msg);
+	sem_post(philo->data->messenger);
 }

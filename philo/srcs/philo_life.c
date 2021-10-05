@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/09/29 15:16:00 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 01:00:26 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	take_forks(t_philo *philo)
 
 static void	eating(t_philo *philo)
 {
-	philo->lastMealTime = get_time(0);
+	philo->last_meal_time = get_time(0);
 	clear_messaging(philo, EATING);
 	ft_usleep(philo->data->toEat);
 	if (philo->data->isLimitedMeals == true)

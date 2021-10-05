@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/05 23:17:28 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/06 01:37:02 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char *argv[])
 	t_philo		*philo;
 
 	data = malloc(sizeof(t_data));
+	philo = malloc(sizeof(t_philo));
 	if (validation_of_args(argc, argv) == ERROR)
 		return (ERROR);
 	if (parsing_args(data, argc, argv) == ERROR)
@@ -36,7 +37,6 @@ int	main(int argc, char *argv[])
 
 static int	data_to_phil(t_philo *philo, t_data *data)
 {
-	philo = malloc(sizeof(t_philo));
 	philo->pos = 1;
 	philo->data = data;
 	philo->mealsLeft = 0;
@@ -60,7 +60,6 @@ static int	creat_prcs(t_philo *philo, t_data *data)
 			philo->pos++;
 		else
 		{
-			write (1, "A", 1);
 			child_philos(philo);
 			printf("Error\n");
 			exit(1);
