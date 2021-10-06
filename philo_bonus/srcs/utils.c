@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:46 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 01:39:54 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 05:48:02 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,4 @@ int	ft_error(char *str)
 {
 	printf("%s", str);
 	exit(1);
-}
-
-void	philo_free(t_philo *philo, pthread_t *philo_thread, t_data *data)
-{
-
 }

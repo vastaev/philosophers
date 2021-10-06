@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 05:05:31 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 05:48:07 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int			parsing_args(t_data *data, int argc, char *argv[]);
 
 //init
 int			init_data(t_data *data);
-int			init_philo(t_philo **philo, pthread_t **philo_thread, t_data *data);
-void		philo_free(t_philo *philo, pthread_t *philo_thread, t_data *data);
 
 //philo life
 void		child_philos(t_philo *philo);
