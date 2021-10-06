@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:40 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/01 23:57:06 by cjoanne          ###   ########.fr       */
+/*   Updated: 2021/10/06 05:55:52 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 int	parsing_args(t_data *data, int argc, char *argv[])
 {
 	data->number = ft_atoi_long(argv[1]);
-	data->toDie = ft_atoi_long(argv[2]);
-	data->toEat = ft_atoi_long(argv[3]);
-	data->toSleep = ft_atoi_long(argv[4]);
+	data->to_die = ft_atoi_long(argv[2]);
+	data->to_eat = ft_atoi_long(argv[3]);
+	data->to_sleep = ft_atoi_long(argv[4]);
 	if (argc == 6)
 	{
-		data->isLimitedMeals = true;
-		data->mealsCounter = ft_atoi_long(argv[5]);
+		data->is_limited_meals = true;
+		data->meals_counter = ft_atoi_long(argv[5]);
 	}
 	if (data->number < 1 || data->number > 200)
 		return (ft_error("Error: bad philos number\n"));
-	if (data->toDie < 25)
+	if (data->to_die < 25)
 		return (ft_error("Error: bad time to die\n"));
-	if (data->toEat < 25)
+	if (data->to_eat < 25)
 		return (ft_error("Error: bad time to eat\n"));
-	if (data->toSleep < 25)
+	if (data->to_sleep < 25)
 		return (ft_error("Error: bad time to sleep\n"));
-	if (data->isLimitedMeals == true && data->mealsCounter < 1)
+	if (data->is_limited_meals == true && data->meals_counter < 1)
 		return (ft_error("Error: bad meals counter\n"));
 	return (0);
 }
@@ -41,9 +41,9 @@ int	init_data(t_data *data)
 	u_int32_t	i;
 
 	data->time = get_time(0);
-	data->ateNum = 0;
-	data->isAllAlive = true;
-	data->startNum = 0;
+	data->ate_num = 0;
+	data->is_all_alive = true;
+	data->start_num = 0;
 	data->mtxs = malloc(sizeof(pthread_mutex_t) * data->number);
 	if (!data->mtxs)
 		return (ERROR);
