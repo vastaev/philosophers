@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 05:48:53 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 21:00:03 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ static int	data_to_phil(t_philo *philo, t_data *data);
 
 int	main(int argc, char *argv[])
 {
-	t_data		*data;
-	t_philo		*philo;
+	t_data		data;
+	t_philo		philo;
 
-	data = malloc(sizeof(t_data));
-	philo = malloc(sizeof(t_philo));
 	if (validation_of_args(argc, argv) == ERROR)
 		return (ERROR);
-	if (parsing_args(data, argc, argv) == ERROR)
+	if (parsing_args(&data, argc, argv) == ERROR)
 		return (ERROR);
-	if (init_data(data) == ERROR)
+	if (init_data(&data) == ERROR)
 		return (ERROR);
-	data_to_phil(philo, data);
-	creat_prcs(philo, data);
-	waiter_actions(data);
+	data_to_phil(&philo, &data);
+	creat_prcs(&philo, &data);
+	waiter_actions(&data);
 	return (0);
 }
 
@@ -40,7 +38,6 @@ static int	data_to_phil(t_philo *philo, t_data *data)
 	philo->pos = 1;
 	philo->data = data;
 	philo->meals_left = 0;
-	philo->thread = malloc(sizeof(pthread_t));
 	if (philo->data->is_limited_meals == true)
 		philo->meals_left = data->meals_counter;
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:44 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 05:48:31 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 21:01:14 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@ static void	clear_messaging(t_philo *philo, char *msg);
 
 void	child_philos(t_philo *philo)
 {
-	if (pthread_create(&philo->thread, NULL, philo_life, philo) == -1)
-		ft_error("Error: creating philo thread fail");
+	uint64_t	time;
+
+	if (pthread_create(&philo->thread, NULL, philo_life, (void *)philo) == -1)
+		exit(-1);
 	while (true)
 	{
 		usleep(3000);
-		if (get_time(philo->last_meal_time) > philo->data->to_die)
+		time = get_time(0);
+		if (time - philo->last_meal_time > philo->data->to_die)
 		{
 			sem_wait(philo->data->messenger);
-			printf("%llu %u is dead\n",
-				get_time(philo->last_meal_time), philo->pos);
+			printf("%llu %u is dead\n", time - philo->birth, philo->pos);
 			exit(1);
 		}
 		if (philo->data->is_limited_meals && philo->meals_left == 0)
@@ -42,6 +44,7 @@ void	*philo_life(void *philosopher)
 	philo = (t_philo *)philosopher;
 	pthread_detach(philo->thread);
 	philo->last_meal_time = get_time(0);
+	philo->birth = get_time(0);
 	while (21)
 	{
 		take_forks(philo);
@@ -83,7 +86,5 @@ static void	eating(t_philo *philo)
 
 static void	clear_messaging(t_philo *philo, char *msg)
 {
-	sem_wait(philo->data->messenger);
-	printf("%llu %u %s\n", get_time(philo->data->time + 1), philo->pos, msg);
-	sem_post(philo->data->messenger);
+	printf("%llu %u %s\n", get_time(philo->birth), philo->pos, msg);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:38 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 05:48:07 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 14:06:15 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 typedef struct s_data
 {
 	uint32_t		number;
-	uint64_t		time;
 	uint64_t		to_die;
 	uint64_t		to_eat;
 	uint64_t		to_sleep;
@@ -47,6 +46,7 @@ typedef struct s_philo
 {
 	uint32_t		pos;
 	pthread_t		thread;
+	uint64_t		birth;
 	uint64_t		last_meal_time;
 	uint32_t		meals_left;
 	t_data			*data;

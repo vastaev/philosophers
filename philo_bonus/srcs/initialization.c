@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cjoanne <cjoanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:40 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 05:10:37 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 21:02:02 by cjoanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	init_data(t_data *data)
 {
 	u_int32_t	i;
 
-	data->time = get_time(0);
 	data->pids = malloc(sizeof(pid_t) * data->number);
 	sem_unlink("forks");
 	sem_unlink("both_forks");
+	sem_unlink("messenger");
 	data->forks = sem_open("forks", O_CREAT, S_IRWXU, data->number);
 	data->both_forks = sem_open("both_forks", O_CREAT, S_IRWXU, data->number);
 	data->messenger = sem_open("messenger", O_CREAT, S_IRWXU, 1);
