@@ -6,7 +6,7 @@
 /*   By: nephilister <nephilister@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 04:56:36 by cjoanne           #+#    #+#             */
-/*   Updated: 2021/10/06 01:37:02 by nephilister      ###   ########.fr       */
+/*   Updated: 2021/10/06 05:11:20 by nephilister      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ static int	data_to_phil(t_philo *philo, t_data *data)
 {
 	philo->pos = 1;
 	philo->data = data;
-	philo->mealsLeft = 0;
+	philo->meals_left = 0;
 	philo->thread = malloc(sizeof(pthread_t));
-	if (philo->data->isLimitedMeals == true)
-		philo->mealsLeft = data->mealsCounter;
+	if (philo->data->is_limited_meals == true)
+		philo->meals_left = data->meals_counter;
 	return (0);
 }
 
 static int	creat_prcs(t_philo *philo, t_data *data)
 {
-	uint32_t i;
-	
+	uint32_t	i;
+
 	i = 0;
 	while (i < data->number)
 	{
